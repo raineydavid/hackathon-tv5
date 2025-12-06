@@ -1,24 +1,25 @@
 # Agentics Foundation TV5 Hackathon
 
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![npm version](https://img.shields.io/badge/npm-agentics--hackathon-red.svg)](https://www.npmjs.com/package/agentics-hackathon)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)  
+[![npm version](https://img.shields.io/badge/npm-agentics--hackathon-red.svg)](https://www.npmjs.com/package/agentics-hackathon)  
 [![Discord](https://img.shields.io/badge/Discord-Agentics-7289da.svg)](https://discord.agentics.org)
 
-> **Build the future of agentic AI - Supported by Google Cloud**
+> **Build the future of agentic AI — Supported by Google Cloud**
 
 The **Agentics Foundation TV5 Hackathon** repository provides CLI tools, MCP servers, and reference implementations for building agentic AI solutions. This includes the **AI Media Discovery** demo app showcasing the Agent-Ready Web (ARW) specification.
 
-🌐 **Website:** [agentics.org/hackathon](https://agentics.org/hackathon)
-💬 **Discord:** [discord.agentics.org](https://discord.agentics.org)
+🌐 **Website:** https://agentics.org/hackathon  
+💬 **Discord:** https://discord.agentics.org  
 📦 **npm:** `npx agentics-hackathon`
 
 ---
 
 ## 🎯 The Challenge
 
-Every night, millions spend up to **45 minutes deciding what to watch** — billions of hours lost every day. Not from lack of content, but from fragmentation across streaming platforms.
+Every night, millions spend up to **45 minutes deciding what to watch** — billions of hours lost globally.  
+The problem isn’t lack of content; it’s fragmentation across platforms.
 
-Join us to build agentic AI solutions that solve real problems using Google Cloud, Gemini, Claude, and open-source tools.
+Your mission: Build agentic AI systems that solve real problems using Google Cloud, Gemini, Claude, and open-source tools.
 
 ---
 
@@ -40,51 +41,80 @@ npx agentics-hackathon mcp
 
 ---
 
+## 🔁 Optional One-Command Starter Script
+
+To simplify development, the repo includes a helper script that wraps all CLI commands.
+
+```bash
+# From the repo root
+./scripts/hackathon.sh init     # Initialize project
+./scripts/hackathon.sh tools    # Install AI tools
+./scripts/hackathon.sh status   # View project status
+./scripts/hackathon.sh mcp      # Start MCP server
+```
+
+Script source:
+
+```bash
+#!/usr/bin/env bash
+
+show_help() {
+  echo ""
+  echo "Agentics Hackathon Starter"
+  echo "Usage: $0 {init|tools|status|mcp}"
+  echo ""
+}
+
+case "$1" in
+  init)   npx agentics-hackathon init ;;
+  tools)  npx agentics-hackathon tools ;;
+  status) npx agentics-hackathon status ;;
+  mcp)    npx agentics-hackathon mcp ;;
+  *)      show_help ;;
+esac
+```
+
+---
+
 ## 🏆 Hackathon Tracks
 
 | Track | Description |
 |-------|-------------|
-| **Entertainment Discovery** | Solve the 45-minute decision problem - help users find what to watch |
-| **Multi-Agent Systems** | Build collaborative AI agents with Google ADK and Vertex AI |
-| **Agentic Workflows** | Create autonomous workflows with Claude, Gemini, and orchestration |
-| **Open Innovation** | Bring your own idea - any agentic AI solution that makes an impact |
+| **Entertainment Discovery** | Solve the 45-minute decision problem — help users find what to watch |
+| **Multi-Agent Systems** | Build collaborative AI agents with Google ADK & Vertex AI |
+| **Agentic Workflows** | Create autonomous workflows using Claude, Gemini & orchestration tools |
+| **Open Innovation** | Build anything agentic that makes an impact |
 
 ---
 
 ## ✨ Features
 
 ### 🛠 CLI Tool (`npx agentics-hackathon`)
-
-- **`init`** - Interactive project setup with track selection and tool installation
-- **`tools`** - Browse and install 17+ AI development tools across 6 categories
-- **`status`** - View project configuration and installed tools
-- **`info`** - Hackathon information and resources
-- **`mcp`** - Start MCP server (stdio or SSE transport)
-- **`discord`** - Join the community
-- **`help`** - Detailed guides and examples
+- `init` — interactive project setup  
+- `tools` — browse & install 17+ AI tools  
+- `status` — project configuration overview  
+- `info` — hackathon resources  
+- `mcp` — start MCP server (stdio or SSE)  
+- `discord` — join community  
+- `help` — guides & examples  
 
 ### 🤖 MCP Server
+Full Model Context Protocol implementation including:
 
-Full Model Context Protocol implementation with:
-- **Tools**: `get_hackathon_info`, `get_tracks`, `get_available_tools`, `get_project_status`, `check_tool_installed`, `get_resources`
-- **Resources**: Project configuration, track information
-- **Prompts**: `hackathon_starter`, `choose_track`
+- Tools:  
+  `get_hackathon_info`, `get_tracks`, `get_available_tools`,  
+  `get_project_status`, `check_tool_installed`, `get_resources`
+- Resources: project metadata & track descriptions  
+- Prompts: `hackathon_starter`, `choose_track`
 
 ### 📱 Demo Applications
-
 | App | Description |
 |-----|-------------|
-| **[Media Discovery](apps/media-discovery/)** | AI-powered movie/TV discovery with ARW implementation |
-| **[ARW Chrome Extension](apps/arw-chrome-extension/)** | Browser extension for inspecting ARW compliance |
+| **Media Discovery** | AI-powered movie/TV semantic search built with ARW |
+| **ARW Chrome Extension** | Tools for validating ARW compliance in websites |
 
-### 📐 ARW (Agent-Ready Web) Components
-
-This repository includes reference implementations of the ARW specification:
-
-- **Specification**: [ARW v0.1 Draft](spec/ARW-0.1-draft.md)
-- **Schemas**: JSON schemas for validation (`packages/schemas/`)
-- **Validators**: Python and Node.js validation tools (`packages/validators/`)
-- **Badges**: Compliance level badges (`packages/badges/`)
+### 📐 ARW Components
+Includes specification, schemas, validators, badges, Next.js plugin, crawler SDK, and more.
 
 ---
 
@@ -92,108 +122,70 @@ This repository includes reference implementations of the ARW specification:
 
 ```plaintext
 hackathon-tv5/
-├── src/                             # Hackathon CLI source
-│   ├── cli.ts                      # Main CLI entry point
-│   ├── commands/                   # CLI commands (init, tools, status, etc.)
-│   ├── mcp/                        # MCP server implementation
-│   │   ├── server.ts              # MCP tools, resources, prompts
-│   │   ├── stdio.ts               # STDIO transport
-│   │   └── sse.ts                 # SSE transport
-│   ├── constants.ts               # Tracks, tools, configuration
-│   └── utils/                     # Helpers and utilities
+├── src/                   # CLI + MCP server
+│   ├── commands/          # init, tools, status, etc.
+│   ├── mcp/               # MCP server + transports
+│   ├── constants.ts       # tracks, tools
+│   └── utils/             # shared utilities
 │
-├── apps/                           # Demo Applications
-│   ├── media-discovery/           # AI Media Discovery (Next.js + ARW)
-│   │   ├── public/
-│   │   │   ├── .well-known/arw-manifest.json  # ARW manifest
-│   │   │   └── llms.txt                       # ARW discovery file
-│   │   └── src/                   # React components & API routes
-│   └── arw-chrome-extension/      # ARW Inspector Chrome Extension
-│       ├── manifest.json          # Chrome Manifest V3
-│       └── src/                   # Popup, content script, service worker
+├── apps/
+│   ├── media-discovery/   # AI Media Discovery demo (Next.js + ARW)
+│   └── arw-chrome-extension/
 │
-├── packages/                       # Shared Packages
-│   ├── @arw/schemas/              # TypeScript ARW schemas with Zod
-│   ├── schemas/                   # JSON schemas for ARW validation
-│   ├── validators/                # Python & Node.js validators
-│   ├── validator/                 # ARW validator CLI tool
-│   ├── badges/                    # ARW compliance badges (SVG)
-│   ├── cli/                       # Rust ARW CLI (advanced)
-│   ├── crawler-sdk/               # TypeScript SDK for ARW crawler service
-│   ├── crawler-service/           # High-performance crawler API service
-│   ├── nextjs-plugin/             # Next.js plugin for ARW integration
-│   └── benchmark/                 # ARW benchmark evaluation
-│
-├── spec/                           # ARW Specification
-│   └── ARW-0.1-draft.md           # Editor's draft specification
-│
-├── docs/                           # Documentation
-├── ai_docs/                        # AI-focused documentation
-├── scripts/                        # Build and utility scripts
-│
-├── .claude/                        # Claude Code configuration
-│   ├── commands/                  # Slash commands
-│   └── agents/                    # Sub-agent definitions
-│
-├── CLAUDE.md                       # Claude Code guidance
-└── README.md                       # This file
+├── packages/              # Shared SDKs, schemas, validators
+├── spec/                  # ARW Specification
+├── docs/                  # Documentation
+├── ai_docs/               # AI-focused docs
+├── scripts/               # Build + helper scripts (includes starter script)
+└── README.md
 ```
 
 ---
 
 ## 🔧 Available Tools (17+)
 
-The CLI provides access to tools across 6 categories:
-
 ### AI Assistants
-- **Claude Code CLI** - Anthropic's AI-powered coding assistant
-- **Gemini CLI** - Google's Gemini model interface
+- Claude Code CLI  
+- Gemini CLI  
 
 ### Orchestration & Agent Frameworks
-- **Claude Flow** - #1 agent orchestration platform with 101 MCP tools
-- **Agentic Flow** - Production AI orchestration with 66 agents
-- **Flow Nexus** - Competitive agentic platform on MCP
-- **Google ADK** - Build multi-agent systems with Google's Agent Development Kit
+- Claude Flow  
+- Agentic Flow  
+- Flow Nexus  
+- Google ADK  
 
 ### Cloud Platform
-- **Google Cloud CLI** - gcloud SDK for Vertex AI, Cloud Functions
-- **Vertex AI SDK** - Google Cloud's unified ML platform
+- gcloud CLI  
+- Vertex AI SDK  
 
 ### Databases & Memory
-- **RuVector** - Vector database and embeddings toolkit
-- **AgentDB** - Database for agentic AI state management
+- RuVector  
+- AgentDB  
 
 ### Synthesis & Advanced Tools
-- **Agentic Synth** - Synthesis tools for agentic development
-- **Strange Loops** - Consciousness exploration SDK
-- **SPARC 2.0** - Autonomous vector coding agent
+- Agentic Synth  
+- Strange Loops  
+- SPARC 2.0  
 
 ### Python Frameworks
-- **LionPride** - Python agentic AI framework
-- **Agentic Framework** - AI agents with natural language
-- **OpenAI Agents SDK** - Multi-agent workflows from OpenAI
+- LionPride  
+- Agentic Framework  
+- OpenAI Agents SDK  
 
 ---
 
-## 🌐 ARW (Agent-Ready Web)
+## 🌐 Agent-Ready Web (ARW)
 
-This repository demonstrates the ARW specification through the **Media Discovery** app.
+ARW provides a structured, machine-optimized layer for agents to interact with websites:
 
-### What is ARW?
+- **85% token reduction** (no HTML scraping)  
+- **10× faster discovery**  
+- **OAuth-secured actions**  
+- **Manifest-driven machine views**  
 
-ARW provides infrastructure for efficient agent-web interaction:
-
-- **85% token reduction** - Machine views vs HTML scraping
-- **10x faster discovery** - Structured manifests vs crawling
-- **OAuth-enforced actions** - Safe agent transactions
-- **AI-* headers** - Full observability of agent traffic
-
-### ARW in Media Discovery
-
-The media-discovery app implements ARW with:
+Example ARW manifest:
 
 ```json
-// /.well-known/arw-manifest.json
 {
   "version": "0.1",
   "profile": "ARW-1",
@@ -211,43 +203,30 @@ The media-discovery app implements ARW with:
 }
 ```
 
-See the [ARW Specification](spec/ARW-0.1-draft.md) for full details.
+See full specification in `spec/ARW-0.1-draft.md`.
 
 ---
 
 ## 💻 Development
 
 ### Prerequisites
-
-- Node.js 18+
-- npm or pnpm
+- Node.js 18+  
+- npm or pnpm  
 
 ### Build & Run
 
 ```bash
-# Install dependencies
 npm install
-
-# Build the CLI
 npm run build
-
-# Run locally
 npm start
-
-# Development mode (watch)
 npm run dev
-
-# Run linter
 npm run lint
 ```
 
 ### MCP Server
 
 ```bash
-# STDIO transport (for Claude Desktop, etc.)
 npm run mcp:stdio
-
-# SSE transport (for web integrations)
 npm run mcp:sse
 ```
 
@@ -263,7 +242,9 @@ npm run dev
 
 ## 🔌 MCP Integration
 
-Add to your Claude Desktop config (`claude_desktop_config.json`):
+### Claude Desktop Configuration
+
+Add to your `claude_desktop_config.json`:
 
 ```json
 {
@@ -276,7 +257,7 @@ Add to your Claude Desktop config (`claude_desktop_config.json`):
 }
 ```
 
-Or use SSE transport:
+### SSE Transport
 
 ```bash
 npx agentics-hackathon mcp sse --port 3000
@@ -286,44 +267,43 @@ npx agentics-hackathon mcp sse --port 3000
 
 ## 🤝 Contributing
 
-We welcome contributions! Areas of focus:
+We welcome contributions!
 
-1. **CLI Improvements** - New commands, better UX
-2. **Tool Integrations** - Add more AI tools
-3. **Demo Apps** - Build showcases for hackathon tracks
-4. **ARW Implementation** - Expand specification coverage
-5. **Documentation** - Guides and tutorials
+Focus areas include:
 
-### Development Workflow
+- CLI improvements  
+- Additional tool integrations  
+- New demo applications  
+- ARW spec expansion & tooling  
+- Documentation & tutorials  
 
-See [CLAUDE.md](CLAUDE.md) for development guidelines including:
-- SPARC methodology for systematic development
-- Concurrent execution patterns
-- File organization rules
+See **CLAUDE.md** for development methodology and patterns.
 
 ---
 
 ## 📜 License
 
-This project is licensed under the [Apache License 2.0](LICENSE).
+Licensed under the **Apache License 2.0**.  
+See `LICENSE`.
 
 ---
 
 ## 🔗 Links
 
-- **🌐 Hackathon Website:** [agentics.org/hackathon](https://agentics.org/hackathon)
-- **💬 Discord:** [discord.agentics.org](https://discord.agentics.org)
-- **📦 GitHub:** [github.com/agenticsorg/hackathon-tv5](https://github.com/agenticsorg/hackathon-tv5)
-- **📖 ARW Spec:** [ARW v0.1 Draft](spec/ARW-0.1-draft.md)
+- Hackathon Website: https://agentics.org/hackathon  
+- Discord: https://discord.agentics.org  
+- GitHub: https://github.com/agenticsorg/hackathon-tv5  
+- ARW Spec: `spec/ARW-0.1-draft.md`
 
 ---
 
 <div align="center">
 
-**🚀 Agentics Foundation TV5 Hackathon**
+**🚀 Agentics Foundation TV5 Hackathon**  
+*Building the Future of Agentic AI — Supported by Google Cloud*
 
-*Building the Future of Agentic AI - Supported by Google Cloud*
-
-[Website](https://agentics.org/hackathon) | [Discord](https://discord.agentics.org) | [GitHub](https://github.com/agenticsorg/hackathon-tv5)
+[Website](https://agentics.org/hackathon) •  
+[Discord](https://discord.agentics.org) •  
+[GitHub](https://github.com/agenticsorg/hackathon-tv5)
 
 </div>

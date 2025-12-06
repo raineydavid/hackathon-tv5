@@ -3,3 +3,5 @@ export { DetailHero } from './DetailHero';
 export { CastSection } from './CastSection';
 export { VideoSection } from './VideoSection';
 export { RelatedSection } from './RelatedSection';
+export { VideoPlayer } from './VideoPlayer';
+export { GeminiAudioControl } from './GeminiAudioControl';

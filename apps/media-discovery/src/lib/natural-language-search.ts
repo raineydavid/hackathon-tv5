@@ -4,12 +4,11 @@
  */
 
 import { generateObject, generateText } from 'ai';
-import { openai } from '@ai-sdk/openai';
-import { google } from '@ai-sdk/google';
 import { z } from 'zod';
 import type { SemanticSearchQuery, SearchIntent, SearchFilters, MediaContent, SearchResult } from '@/types/media';
 import { searchMulti, getSimilarMovies, getSimilarTVShows, discoverMovies, discoverTVShows } from './tmdb';
 import { searchByEmbedding, getContentEmbedding, calculateSimilarity } from './vector-search';
+import { getObjectGenerationModel, getTextGenerationModel, logAvailableModels } from './model-fallback';
 
 // Schema for parsed search intent
 const SearchIntentSchema = z.object({
@@ -78,7 +77,7 @@ export async function parseSearchQuery(query: string): Promise<SemanticSearchQue
     console.log(`🧠 AI parsing intent for: "${query.slice(0, 30)}..."`);
     // Use AI to extract intent from natural language
     const { object: intent } = await generateObject({
-      model: openai('gpt-4o-mini'),
+      model: getObjectGenerationModel() as any,
       schema: SearchIntentSchema,
       prompt: `Analyze this movie/TV show search query and extract the user's intent:
 
@@ -387,7 +386,7 @@ export async function explainRecommendation(
 ): Promise<string> {
   try {
     const { text } = await generateText({
-      model: openai('gpt-4o-mini'),
+      model: getTextGenerationModel() as any,
       prompt: `Generate a brief, engaging explanation for why "${content.title}" was recommended to a user who searched for: "${userQuery}"
 
 Match reasons: ${matchReasons.join(', ')}
