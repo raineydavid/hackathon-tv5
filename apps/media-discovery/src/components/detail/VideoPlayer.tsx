@@ -38,7 +38,7 @@ export function VideoPlayer({ video, isOpen, onClose }: VideoPlayerProps) {
 
   if (!isOpen) return null;
 
-  const videoUrl = `https://www.youtube.com/embed/${video.key}?autoplay=1&modestbranding=1&controls=1`;
+  const videoUrl = `https://www.youtube.com/embed/${video.key}?autoplay=1&modestbranding=1&controls=1&enablejsapi=1&origin=${window.location.origin}`;
 
   return (
     <>
