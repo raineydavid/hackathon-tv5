@@ -38,7 +38,7 @@ export function VideoPlayer({ video, isOpen, onClose }: VideoPlayerProps) {
 
   if (!isOpen) return null;
 
-  const videoUrl = `https://www.youtube.com/embed/${video.key}?autoplay=1&modestbranding=1&controls=1&enablejsapi=1&origin=${window.location.origin}`;
+  const videoUrl = `https://www.youtube.com/embed/${video.key}?autoplay=1&mute=1&modestbranding=1&controls=1&enablejsapi=1&origin=${window.location.origin}`;
 
   return (
     <>
@@ -64,6 +64,7 @@ export function VideoPlayer({ video, isOpen, onClose }: VideoPlayerProps) {
               src={videoUrl}
               title={video.name}
               allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
               className="absolute inset-0 w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             />
